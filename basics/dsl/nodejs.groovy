@@ -6,14 +6,14 @@ job('NodeJS example') {
         }
     }
     triggers {
-        scm('H/5 * * * *')
+        scm('H/5 * * * *') // this job will pull every 5 minutes.
     }
     wrappers {
         nodejs('nodejs') // this is the name of the NodeJS installation in 
                          // Manage Jenkins -> Configure Tools -> NodeJS Installations -> Name
     }
     steps {
-        shell('cd basics; npm install'; 'tar -czvf myapp.tar.gz .')
+        shell("cd basics"; "npm install"; "tar -czvf myapp.tar.gz .")
     }
 
     publishers {
