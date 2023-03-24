@@ -15,5 +15,11 @@ job('NodeJS example') {
     steps {
         shell("npm install")
     }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'basics/node_modules', fingerprint: true
+        }
+    }
 }
 
