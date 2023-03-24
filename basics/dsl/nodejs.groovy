@@ -21,10 +21,8 @@ job('NodeJS example') {
         )
     }
 
-    post {
-        always {
-            archiveArtifacts artifacts: 'basics/*.tar.gz', fingerprint: true
-        }
+    publishers {
+        archiveArtifacts('basics/*.tar.gz')
     }
 }
 
