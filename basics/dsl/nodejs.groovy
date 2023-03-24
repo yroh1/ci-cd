@@ -13,11 +13,11 @@ job('NodeJS example') {
                          // Manage Jenkins -> Configure Tools -> NodeJS Installations -> Name
     }
     steps {
-        shell("""cd basics; npm install; tar -czvf myapp.tar.gz .""")
+        shell("""cd basics; npm install; tar -czvf ../myapp.tar.gz .""")
     }
 
     publishers {
-        archiveArtifacts('basics/*.tar.gz')
+        archiveArtifacts('*.tar.gz')
     }
 }
 
