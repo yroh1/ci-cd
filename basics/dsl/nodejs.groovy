@@ -13,12 +13,17 @@ job('NodeJS example') {
                          // Manage Jenkins -> Configure Tools -> NodeJS Installations -> Name
     }
     steps {
-        shell("npm install")
+        shell(
+            """
+            cd basics; npm install
+            tar -czvf myapp.tar.gz .
+            """
+        )
     }
 
     post {
         always {
-            archiveArtifacts artifacts: 'basics/node_modules', fingerprint: true
+            archiveArtifacts artifacts: 'basics/*.tar.gz', fingerprint: true
         }
     }
 }
