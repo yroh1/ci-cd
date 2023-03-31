@@ -20,13 +20,16 @@ node {
      def myTestContainer = docker.image('node:4.6')
      myTestContainer.pull()
      myTestContainer.inside("--link ${mysql.id}:mysql", '-v ' + sourceDir + ':' + destDir) { // using linking, mysql will be available at host: mysql, port: 3306
-          dir('/app')
-          sh 'npm install --only=dev' 
-          sh 'npm test'                     
+          dir('/app') {
+            sh "echo ${PWD}"
+            sh "ls -la"
+            sh 'npm install --only=dev' 
+            sh 'npm test'
+          }           
      }                                   
      mysql.stop()
    }
-   
+
    stage('docker build/push') {            
      docker.withRegistry('https://index.docker.io/v1/', 'docker_hub') {
        def app = docker.build("michabi/jenkins-lab:${commit_id}", '.').push()
