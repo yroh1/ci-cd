@@ -1,13 +1,14 @@
 node {
    def commit_id
-   def sourceDir = '${workspace}/basics'
-   def destDir = '/app'
    stage('Preparation') {
      checkout scm
      sh "git rev-parse --short HEAD > .git/commit-id"
      commit_id = readFile('.git/commit-id').trim()
    }
    stage('test') {
+     def sourceDir = '${workspace}/basics'
+     def destDir = '/app'
+     sh "echo ${sourceDir}"
      def myTestContainer = docker.image('node:4.6')
      myTestContainer.pull()
      myTestContainer.inside('-v ' + sourceDir + ':' + destDir) {
@@ -20,6 +21,8 @@ node {
      }
    }
    stage('test with a DB') {
+     def sourceDir = '${workspace}/basics'
+     def destDir = '/app'
      def mysql = docker.image('mysql').run("-e MYSQL_ALLOW_EMPTY_PASSWORD=yes") 
      def myTestContainer = docker.image('node:4.6')
      myTestContainer.pull()
