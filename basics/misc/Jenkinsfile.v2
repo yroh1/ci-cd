@@ -1,5 +1,6 @@
 node {
    def commit_id
+   def sourceDir = '${workspace}/basics'
    stage('Preparation') {
      checkout scm
      sh "git rev-parse --short HEAD > .git/commit-id"
@@ -14,15 +15,18 @@ node {
      }
    }
    stage('test with a DB') {
+     def destDir = '/app'
      def mysql = docker.image('mysql').run("-e MYSQL_ALLOW_EMPTY_PASSWORD=yes") 
      def myTestContainer = docker.image('node:4.6')
      myTestContainer.pull()
-     myTestContainer.inside("--link ${mysql.id}:mysql") { // using linking, mysql will be available at host: mysql, port: 3306
+     myTestContainer.inside("--link ${mysql.id}:mysql", '-v ' + sourceDir + ':' + destDir) { // using linking, mysql will be available at host: mysql, port: 3306
+          dir('/app')
           sh 'npm install --only=dev' 
           sh 'npm test'                     
      }                                   
      mysql.stop()
-   }                                     
+   }
+   
    stage('docker build/push') {            
      docker.withRegistry('https://index.docker.io/v1/', 'docker_hub') {
        def app = docker.build("michabi/jenkins-lab:${commit_id}", '.').push()
