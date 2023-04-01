@@ -12,7 +12,8 @@ node {
        dir('basics') {
           sh 'npm install --only=dev'
           sh 'npm test'
-     }
+      }
+    }
    }
    stage('test with a DB') {
      def mysql = docker.image('mysql').run("-e MYSQL_ALLOW_EMPTY_PASSWORD=yes") 
