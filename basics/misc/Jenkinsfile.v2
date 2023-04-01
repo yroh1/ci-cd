@@ -6,34 +6,24 @@ node {
      commit_id = readFile('.git/commit-id').trim()
    }
    stage('test') {
-     def sourceDir = '${WORKSPACE}/basics'
-     def destDir = '/app'
-     sh "echo ${sourceDir}"
      def myTestContainer = docker.image('node:4.6')
      myTestContainer.pull()
-     myTestContainer.inside('-v ' + sourceDir + ':' + destDir) {
-        dir('/app') {
-          sh "echo ${PWD}"
-          sh "ls -la"
-          sh 'npm install --only=dev' 
+     myTestContainer.inside {
+       dir('basics') {
+          sh 'npm install --only=dev'
           sh 'npm test'
-        }      
      }
    }
    stage('test with a DB') {
-     def sourceDir = '${workspace}/basics'
-     def destDir = '/app'
      def mysql = docker.image('mysql').run("-e MYSQL_ALLOW_EMPTY_PASSWORD=yes") 
      def myTestContainer = docker.image('node:4.6')
      myTestContainer.pull()
-     myTestContainer.inside("--link ${mysql.id}:mysql", '-v ' + sourceDir + ':' + destDir) { // using linking, mysql will be available at host: mysql, port: 3306
-          dir('/app') {
-            sh "echo ${PWD}"
-            sh "ls -la"
-            sh 'npm install --only=dev' 
-            sh 'npm test'
-          }           
-     }                                   
+     myTestContainer.inside("--link ${mysql.id}:mysql") { // using linking, mysql will be available at host: mysql, port: 3306
+        dir('basics') {
+          sh 'npm install --only=dev' 
+          sh 'npm test'
+        }                    
+     }                        
      mysql.stop()
    }
 
