@@ -3,7 +3,7 @@ node {
    //We have two options, 1: to SCM from Pipeline Script from SCM, 2: Use our own declartive Github repo
    stage('checkout'){
       git branch: 'master',
-          url: 'https://github.com/yanivomc/docker-cicd.git'
+          url: 'https://github.com/micha-bitton/ci-cd.git'
    }
    stage('step a') {
      checkout scm
