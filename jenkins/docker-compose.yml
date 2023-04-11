@@ -1,18 +1,19 @@
 version: '3.1'
 services:
     jenkins:
-        build: ./master
+        build: ./jenkins/master
         image: jenkins-jb/master:1.0
-        container_name: jenkins
+        container_name: jenkins-master
         ports:
             - '8080:8080'
             - '50000:50000'
         networks: 
             - jb
     jenkins-slave:
-        build: ./slave
+        build: ./jenkins/slave
         image: jenkins-jb/slave:1.0
-        container_name: jenkins-slave
+        # Removed container name to support scale out option 
+        #container_name: jenkins-slave 
         restart: always
         environment:
             - 'JENKINS_URL=http://jenkins:8080'
