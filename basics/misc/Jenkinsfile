@@ -2,7 +2,7 @@ node {
    def commit_id
    //We have two options, 1: to SCM from Pipeline Script from SCM, 2: Use our own declartive Github repo
    stage('checkout'){
-      git branch: 'master',
+      git branch: 'main',
           url: 'https://github.com/micha-bitton/ci-cd.git'
    }
    stage('step a') {
@@ -13,8 +13,8 @@ node {
    stage('test') {
      nodejs(nodeJSInstallationName: 'nodejs') {
        dir("basics"){
-       sh 'npm install --only=dev'
-       sh 'npm test'
+        sh 'npm install --only=dev'
+        sh 'npm test'
        }
      }
    }
@@ -29,6 +29,6 @@ node {
       docker run --rm -tid --name docker_test -p 3000 michabi/jenkins-lab:latest
       docker kill docker_test
       '''
-     }
+    }
 }
 
