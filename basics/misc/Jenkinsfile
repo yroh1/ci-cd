@@ -13,8 +13,8 @@ node {
    stage('test') {
      nodejs(nodeJSInstallationName: 'nodejs') {
        dir("basics"){
-       sh 'npm install --only=dev'
-       sh 'npm test'
+        sh 'npm install --only=dev'
+        sh 'npm test'
        }
      }
    }
