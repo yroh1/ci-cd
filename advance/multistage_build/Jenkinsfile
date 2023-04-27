@@ -1,0 +1,23 @@
+node {
+   def commit_id
+   stage('step a') {
+     checkout scm
+     sh "git rev-parse --short HEAD > .git/commit-id"                        
+     commit_id = readFile('.git/commit-id').trim()
+   }
+   stage('DockerBuild') {
+       dir("docker/day_2/12factor/multistage_build/"){
+       sh 'docker build --target builder -t test:test -f Dockerfile-pipelines .'
+       }
+     }
+   stage('Linting') {
+       dir("docker/day_2/12factor/multistage_build/"){
+       sh 'docker build --target linting -t test:test -f Dockerfile-pipelines .'
+       }
+     }   
+   }
+   
+
+
+
+
