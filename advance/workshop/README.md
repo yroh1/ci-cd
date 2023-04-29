@@ -1,26 +1,18 @@
-# talkshow
-
-[![Build Status](https://travis-ci.com/rochacbruno/talkshow.svg?branch=extended)](https://travis-ci.com/rochacbruno/talkshow)
-[![codecov](https://codecov.io/gh/rochacbruno/talkshow/branch/extended/graph/badge.svg)](https://codecov.io/gh/rochacbruno/talkshow)
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/rochacbruno/talkshow.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/rochacbruno/talkshow/context:python)
-
 A Call 4 Papers System - A simple base app as example of Flask Architecture
 
-Este é o material do tutorial da Flask Conf 2018 - O evento ocorreu no dia 24/08/2018 - com Patrocinio da SciELO
+This is the material from the Flask Conf 2018 tutorial - The event took place on 08/24/2018 - Sponsored by SciELO
 
-## Apostila
+handout
+The Handout in PDF contains a detailed explanation of the files in this repository, it is recommended to accompany the handout while developing the project and use this repository only as a reference for copy/paste.
 
-A Apostila em PDF contém a explicação detalhada dos arquivos deste repositório, é recomendado acompanhar a apostila enquanto desenvolve o projeto e utilizar este repositório apenas como referencia para copy/paste.
+Handout: https://github.com/rochacbruno/talkshow/blob/master/TutorialFlaskConf2018_BrunoRocha.pdf
 
-Apostila:  https://github.com/rochacbruno/talkshow/blob/master/TutorialFlaskConf2018_BrunoRocha.pdf 
+Code to accompany the handout is on the master branch https://github.com/rochacbruno/talkshow/tree/master
 
-Código para acompanhar a apostila está na branch `master` https://github.com/rochacbruno/talkshow/tree/master
+IMPORTANT: Changes and developments in these applications will only be made in this extended branch, the master branch will remain in sync with the handout.
 
-> IMPORTANTE: Alterações e evoluções nesta aplicações serão feitas apenas nesta branch `extended` a branch `master` se manterá em sincronia com a apostila.
-
-## TL:DR;
-
-Não quer acompanhar a apostila e apenas ver o código em execução?
+TL:DR;
+Don't want to follow the handout and just see the code running?
 
 ```
 git clone https://github.com/rochacbruno/talkshow.git
@@ -37,7 +29,7 @@ flask routes
 flask run
 ```
 
-Acesse: http://localhost:5000 para ver os eventos cadastrados e submeter propostas
+Acesse: http://localhost:5000 to see registered events and submit proposals
 
 Admin em http://localhost:5000/admin user:admin pass:1234
 
@@ -74,6 +66,3 @@ static                     GET        /static/<path:filename>
 webui.event                GET, POST  /<slug>/
 webui.index                GET        /
 
-```
-
-Contribuições são bem vindas na branch `extended`
