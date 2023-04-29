@@ -1,0 +1,21 @@
+node {
+   def python_image = docker.image('python:3.6-slim')
+   python_image.pull
+   stage('Checkout') {
+     checkout scm
+   }
+   stage('install python') {
+   		#install python
+     }
+   stage('set up virtual env') {
+    //    activate env
+     }
+   stage('Install Pip packages') {
+    //    install pip
+   }
+   stage('test') {
+    //    running test
+   }
+   stage('docker run') {
+	// running app
+}
