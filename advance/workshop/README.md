@@ -15,9 +15,8 @@ TL:DR;
 Don't want to follow the handout and just see the code running?
 
 ```
-git clone https://github.com/rochacbruno/talkshow.git
-cd talkshow
-git checkout extended
+git clone https://github.com/micha-bitton/ci-cd.git
+cd advance/workshop/
 python3.6 -m venv venv
 source venv/bin/activate
 pip install -e '.[dev]'
