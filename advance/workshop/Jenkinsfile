@@ -1,26 +1,19 @@
 node {
+  def commit_id
    stage('Checkout') {
      checkout scm
+     sh "git rev-parse --short HEAD > .git/commit-id"
+     commit_id = readFile('.git/commit-id').trim()
    }
-   stage('Build') {
-       dir("advance/workshop/talkshow"){
-        // build
-       }
+   stage('docker MultiStage build/push') {
+     dir("advance/workshop/talkshow") {
+      def flask_image = docker.build("michabi/jenkins-lab:${commit_id}", "--build-args USERNAME=${env.BUILD_USER_ID}, '.'")
+      docker.withRegistry('https://index.docker.io/v1/', 'docker_hub') {
+        flask_image.push()
+      }
      }
-   stage('test') {
-       dir("advance/workshop/talkshow"){
-        // test
-       }
-     }
-   stage('Serve') {
-    dir("advance/workshop/talkshow"){
-        // serve
-       }
-     }
-   }
-   stage('docker build/push') {
-    //  docker build and push
    }
    stage('docker run') {
-    //  docker run
+     flask_image.run()
+   }
 }
