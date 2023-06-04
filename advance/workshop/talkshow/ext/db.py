@@ -17,7 +17,8 @@ class CustomClient(TinyMongoClient):
 def configure(app):
     """Creates a new database connection"""
 
-    if app.env == "production":
+    environment = app.config['ENV']
+    if environment == "production":
         client = MongoClient(host="localhost")
     else:
         client = CustomClient('database')

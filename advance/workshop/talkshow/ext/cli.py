@@ -20,7 +20,7 @@ def configure(app):
             'name': name,
             'date': datetime.strptime(date, '%Y-%m-%d'),
             'slug': slug})
-        click.echo(f"{slug} cadastrado com sucesso!")
+        click.echo(f"{slug} Event as been created!")
 
     @app.cli.command()
     @click.option('--username', '-u', required=True)
@@ -28,4 +28,4 @@ def configure(app):
     def adduser(username, password):
         """Creates a new admin user"""
         user = create_user(username, password)
-        click.echo(f"{user.inserted_id} cadastrado com sucesso!")
+        click.echo(f"{user.inserted_id} User as been created!")

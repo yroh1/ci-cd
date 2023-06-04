@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 {% block page %}
-    <h1>Submeta uma palestra para {{ event['name'] }}</h1>
+    <h1>Sumbit a form to {{ event['name'] }}</h1>
     {{ wtf.quick_form(form) }}
 {% endblock %}
 

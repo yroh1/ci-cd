@@ -6,6 +6,7 @@ def create_app(**kwargs):
     """Creates a new Flask app using the Factory Pattern"""
     app = Flask(__name__)
     app.config.update(kwargs)
+    print(app.env)
     # extensions
     ext.configure(app)  # <-- registro dinâmico das extensões
     # blueprints

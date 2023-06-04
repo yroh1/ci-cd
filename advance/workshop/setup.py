@@ -13,6 +13,7 @@ requirements = [
     'python-dotenv',
     'flasgger',
     'dynaconf',
+    'email_validator',
     "awesome-slugify",
     "tinydb-serialization"
 ]

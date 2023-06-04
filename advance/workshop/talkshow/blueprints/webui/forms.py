@@ -17,7 +17,7 @@ class ProposalForm(FlaskForm):
     description = wtf.TextAreaField(
         'description', validators=[wtf.validators.DataRequired()]
     )
-    submit = wtf.SubmitField("Enviar")
+    submit = wtf.SubmitField("Submit")
 
 
 class ProposalAdminForm(ProposalForm):
