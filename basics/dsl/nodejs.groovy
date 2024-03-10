@@ -1,6 +1,6 @@
 job('NodeJS example') {
     scm {
-        git('https://github.com/micha-bitton/ci-cd.git') {  node -> // is hudson.plugins.git.GitSCM
+        git('https://github.com/micha-bitton/ci-cd.git', 'main') {  node -> // is hudson.plugins.git.GitSCM
             node / gitConfigName('DSL NodeJs User Example')
             node / gitConfigEmail('jenins-dsl@domain.com')
         }
@@ -17,7 +17,7 @@ job('NodeJS example') {
     }
 
     publishers {
-        archiveArtifacts('*.tar.gz')
+        archiveArtifacts('../*.tar.gz')
     }
 }
 
