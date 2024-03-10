@@ -17,7 +17,7 @@ job('NodeJS example') {
     }
 
     publishers {
-        archiveArtifacts('../*.tar.gz')
+        archiveArtifacts('*.tar.gz')
     }
 }
 
