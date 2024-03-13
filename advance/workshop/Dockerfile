@@ -3,11 +3,12 @@ FROM python:3.10 as builder
 WORKDIR /app
 
 ARG USERNAME
+ARG PASSWORD
 COPY . /app/
 
 RUN pip install -e '.[dev]' && pip install email_validator
 
-RUN flask adduser -u ${USERNAME} -p 1234
+RUN flask adduser -u $USERNAME -p $PASSWORD
 RUN flask addevent -n "Flask Conf" -d "2018-08-25"
 
 FROM qnib/pytest as pytest

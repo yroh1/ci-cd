@@ -28,11 +28,11 @@ flask routes
 flask run
 ```
 
-Acesse: http://localhost:5000 to see registered events and submit proposals
+Acesse: http://localhost:5002 to see registered events and submit proposals
 
-Admin em http://localhost:5000/admin user:admin pass:1234
+Admin em http://localhost:5002/admin user:admin pass:1234
 
-API em http://localhost:5000/apidocs/
+API em http://localhost:5002/apidocs/
 
 
 URLS e APIS:
@@ -64,4 +64,59 @@ simplelogin.logout         GET        /logout/
 static                     GET        /static/<path:filename>
 webui.event                GET, POST  /<slug>/
 webui.index                GET        /
+```
+
+### Run as Container
+
+Now that we have the application running locally, let's run it as a container.
+
+# Build a Dockerfile for the application
+
+We will need to create the dockerfile with the following:
+
+1. Base image - python:3.6, install dependencies
+
+2. Test our application - run tests with image "qnib/pytest"
+Run this command
+    ```bash
+    pytest -v --cov-config .coveragerc --cov=talkshow -l --tb=short --maxfail=1 tests/
+    ```
+
+3. Run the application.
+    ```
+        CMD ["flask", "run"]
+    ```
+
+4. Build the docker image with tag "multistage_workshop"
+
+5. Run the application.
+
+### Please think of the following:
+
+1. What is the base image you are going to use?
+2. What are the dependencies you need to install?
+3. What is the command to run the tests?
+4. What is the command to run the application?
+5. How to pass the USERNAME and PASSWORD to the application?
+6. How to reach my application through local machine browser?
+7. How to shrink size for the final image? did we need to install the test dependencies in the final image?
+
+
+Finished the LAB? confidence?, push the changes to your repository and create a pull request, send the Pull Request link to me.
+
+Now that you have Dockerized your application, create new Job in Jenkins to build and push the image to DockerHub.
+
+1. Create a new Jenkinsfile in the root of your repository
+2. Jenkins file should have minimal stages:
+    - Checkout SCM
+    - Build the Docker image
+    - Push the Docker image to DockerHub
+3. Create a new Job in Jenkins
+4. Configure the Job to use the Jenkinsfile
+5. Run the Job
+6. Check the image in DockerHub and see if it was pushed successfully
+7. Send the Jenkins Job link to me
+
+
+Good luck!
 
