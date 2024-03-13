@@ -7,15 +7,20 @@ node {
    }
    stage('DockerBuild') {
        dir("docker/day_2/12factor/multistage_build/"){
-       sh 'docker build --target builder -t test:test -f Dockerfile-pipelines .'
+       sh "docker build --target builder -t michabi/jenkins_lab:multi_stage_builder -f Dockerfile-pipelines ."
        }
      }
    stage('Linting') {
        dir("docker/day_2/12factor/multistage_build/"){
-       sh 'docker build --target linting -t test:test -f Dockerfile-pipelines .'
+       sh "docker build --target linting -t michabi/jenkins_lab:multi_stage_test -f Dockerfile-pipelines ."
        }
-     }   
-   }
+     }
+   stage('Push to DockerHub') {
+      sh "docker push michabi/jenkins_lab:multi_stage_builder"
+      sh "docker push michabi/jenkins_lab:multi_stage_test"
+   }   
+}
+   
    
 
 
