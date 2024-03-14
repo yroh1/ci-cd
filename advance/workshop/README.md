@@ -106,17 +106,38 @@ Finished the LAB? confidence?, push the changes to your repository and create a 
 
 Now that you have Dockerized your application, create new Job in Jenkins to build and push the image to DockerHub.
 
+### Jenkinsfile
+
+There are three ways to achive the application running goals.
+
+# Please choose one of the following:
+- Not multistage build and try to improve it with docker commands
+- Only using docker command
+- Using Docker plugin to build push and run the application
+
+
 1. Create a new Jenkinsfile in the root of your repository
 2. Jenkins file should have minimal stages:
     - Checkout SCM
     - Build the Docker image
     - Push the Docker image to DockerHub
+    - Run the Application
+
 3. Create a new Job in Jenkins
 4. Configure the Job to use the Jenkinsfile
 5. Run the Job
 6. Check the image in DockerHub and see if it was pushed successfully
 7. Send the Jenkins Job link to me
 
+
+## Shared Libraries (Bonus)
+
+Create a new Shared library in Jenkins to use the Jenkinsfile in all the repositories.
+The shared library should have the following:
+
+1. "call" function that accepting the repository uri and the branch name
+2. "call" function should checkout the branch repository with "Git" plugin
+3. Use the shared library in the jenkins file and replace the first SCM step with calling to the shared library function and pass the arguments "URI" and "BRANCH_NAME".
 
 Good luck!
 
