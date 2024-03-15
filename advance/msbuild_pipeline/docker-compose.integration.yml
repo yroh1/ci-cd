@@ -16,13 +16,13 @@ services:
   accountownerapp:
     depends_on:
       - db
-    image: "yanivomc/dotnet:B1" # ${BUILD_NUMBER}
+    image: "<registry>/dotnet:B1" # ${BUILD_NUMBER}
     build:
       context: .
   integration:
     depends_on:
       - accountownerapp
-    image: "yanivomc/test-dontnet:B1" #${BUILD_NUMBER}
+    image: "<registry>/test-dontnet:B1" #${BUILD_NUMBER}
     build:
       context: .
       dockerfile: Dockerfile.Integration
