@@ -2,13 +2,17 @@ version: '3.1'
 services:
     jenkins:
         build: ./jenkins/master
-        image: jenkins-jb/master:2.0
+        image: jenkins-jb/master:3.0
         container_name: jenkins-master
         ports:
             - '8080:8080'
             - '50000:50000'
+        environment:
+            - CASC_JENKINS_CONFIG=/var/jenkins_home/casc.yaml
         networks: 
             - jb
+        volumes:
+            - ./jenkins/master/casc.yaml:/var/jenkins_home/casc.yaml
     jenkins-slave:
         build: ./jenkins/slave
         image: jenkins-jb/slave:1.0
