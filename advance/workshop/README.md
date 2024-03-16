@@ -14,19 +14,23 @@ IMPORTANT: Changes and developments in these applications will only be made in t
 TL:DR;
 Don't want to follow the handout and just see the code running?
 
-```
+
 git clone https://github.com/micha-bitton/ci-cd.git
 cd advance/workshop/
-python3.6 -m venv venv
+
+# Verify Python installed, required ~>3.6, if not installed go ahead and install it
+sudo apt-get install python3-pip
+
+python3 -m venv venv
 source venv/bin/activate
 pip install -e '.[dev]'
-
-#comandos
+lin
+# comandos
 flask adduser -u admin -p 1234
 flask addevent -n "Flask Conf" -d "2018-08-25"
 flask routes
 flask run
-```
+
 
 Acesse: http://localhost:5002 to see registered events and submit proposals
 
