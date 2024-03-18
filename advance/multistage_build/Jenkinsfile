@@ -18,9 +18,11 @@ node {
        }
     }
    stage('push') {
+      dir("advance/multistage_build/"){
       sh "docker login -u yroh1 -p passwordfr12" 
       sh "docker build -t yroh1/jenkins-lab:multi_stage_test -f Dockerfile-pipelines ."
       sh "docker push yroh1/jenkins-lab:multi_stage_test"
+      }
    }
 
 }
