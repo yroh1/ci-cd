@@ -9,5 +9,15 @@ services:
         - 0.0.0.0:9092:9092
       networks:
        - nexus
+  kashlah:
+      image: yroh1/jen:multi
+      build:
+        dockerfile: Dockerfile-pipelines
+      depends_on: 
+       - sonarqube
+      environment:
+       - DOCKER_BUILDKIT = 0
+      networks:
+       - nexus
 networks:
   nexus:
