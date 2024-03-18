@@ -6,13 +6,13 @@ node {
      commit_id = readFile('.git/commit-id').trim()
    }
    stage('DockerBuild') {
-       dir("docker/day_2/12factor/multistage_build/"){
+       dir("advance/multistage_build/"){
        sh "ls"
        sh "docker build --target builder -t yroh1/jenkins-lab:multi_stage_builder -f Dockerfile-pipelines ."
        }
      }
    stage('Linting') {
-       dir("docker/day_2/12factor/multistage_build/"){
+       dir("advance/multistage_build/"){
        sh "ls"
        sh "docker build --target linting -t yroh1/jenkins-lab:multi_stage_test -f Dockerfile-pipelines ."
        }
